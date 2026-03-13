@@ -8,12 +8,12 @@ class AATowerBase;
 class ACoreBase;
 
 UCLASS()
-class TOWERDEFENSE_API AAEnemyBase : public ACharacter
+class TOWERDEFENSE_API AEnemyBase : public ACharacter
 {
 	GENERATED_BODY()
 
 public:
-	AAEnemyBase();
+	AEnemyBase();
 
 protected:
 
@@ -43,7 +43,7 @@ public:
 
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	void TakeDamage(float DamageAmount);
+	void ReceiveDamage(float DamageAmount);
 
 protected:
 

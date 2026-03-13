@@ -8,7 +8,7 @@
 #include "ACoreBase.h"
 
 // Sets default values
-AAEnemyBase::AAEnemyBase()
+AEnemyBase::AEnemyBase()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
@@ -16,7 +16,7 @@ AAEnemyBase::AAEnemyBase()
 }
 
 // Called when the game starts or when spawned
-void AAEnemyBase::BeginPlay()
+void AEnemyBase::BeginPlay()
 {
 	Super::BeginPlay();
 
@@ -34,7 +34,7 @@ void AAEnemyBase::BeginPlay()
 }
 
 // Called every frame
-void AAEnemyBase::Tick(float DeltaTime)
+void AEnemyBase::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
@@ -43,12 +43,12 @@ void AAEnemyBase::Tick(float DeltaTime)
 }
 
 // Called to bind functionality to input
-void AAEnemyBase::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+void AEnemyBase::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
 }
-void AAEnemyBase::TakeDamage(float DamageAmount)
+void AEnemyBase::ReceiveDamage(float DamageAmount)
 {
 	CurrentHealth -= DamageAmount;
 	if (CurrentHealth <= 0)
@@ -56,20 +56,20 @@ void AAEnemyBase::TakeDamage(float DamageAmount)
 		Die();
 	}
 }
-void AAEnemyBase::Die()
+void AEnemyBase::Die()
 {
 	// Implement death logic here, e.g., play death animation, drop loot, etc.
 	UE_LOG(LogTemp, Warning, TEXT("Enemy died: %s"), *GetName());
 	Destroy();
 }
-void AAEnemyBase::ReachCore()
+void AEnemyBase::ReachCore()
 {
 	if (TargetCore) {
 		// Implement logic for when the enemy reaches the core, e.g., apply damage to the core
 		UE_LOG(LogTemp, Warning, TEXT("Reached the core: %s"), *TargetCore->GetName());
 	}
 }
-void AAEnemyBase::MoveToCore()
+void AEnemyBase::MoveToCore()
 {
 	FVector CoreLocation = TargetCore->GetActorLocation();
 
