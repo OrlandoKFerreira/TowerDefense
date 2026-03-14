@@ -21,7 +21,7 @@ void AWaveManager::StartWave()
 {
 	EnemiesSpawned = 0;
 	EnemiesAlive = 0;
-
+	EnemiesPerWave = 5 + CurrentWave * 2;
 	GetWorld()->GetTimerManager().SetTimer(
 		SpawnTimer,
 		this,
@@ -62,5 +62,13 @@ void AWaveManager::OnEnemyKilled()
 		CurrentWave++;
 
 		StartWave();
+
+		GetWorld()->GetTimerManager().SetTimer(
+			NextWaveTimer,
+			this,
+			&AWaveManager::StartWave,
+			5.0f,
+			false
+		);
 	}
 }
