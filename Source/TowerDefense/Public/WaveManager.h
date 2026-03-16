@@ -37,7 +37,7 @@ protected:
 	int32 EnemiesAlive;
 
 	
-
+	FTimerHandle NextWaveTimer;
 	FTimerHandle SpawnTimer;
 
 	void StartWave();
