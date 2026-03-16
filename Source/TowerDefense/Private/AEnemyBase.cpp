@@ -59,6 +59,10 @@ void AEnemyBase::ReceiveDamage(float DamageAmount)
 void AEnemyBase::Die()
 {
 	// Implement death logic here, e.g., play death animation, drop loot, etc.
+	ATDGameState* GS = GetWorld()->GetGameState<ATDGameState>();
+	if(GS){
+		GS->AddEnergy(RewardEnergy);
+	}
 	UE_LOG(LogTemp, Warning, TEXT("Enemy died: %s"), *GetName());
 	Destroy();
 }

@@ -2,12 +2,12 @@
 
 
 #include "ATDGameState.h"
-AATDGameState::AATDGameState()
+ATDGameState::ATDGameState()
 {
 	TotalEnergy = 100.0f;
 	AvailableEnergy = TotalEnergy;
 }
-bool AATDGameState::SpendEnergy(float Amount)
+bool ATDGameState::SpendEnergy(float Amount)
 {
 	if (AvailableEnergy >= Amount)
 	{
@@ -16,13 +16,17 @@ bool AATDGameState::SpendEnergy(float Amount)
 	}
 	return false;
 }
-void AATDGameState::AddEnergy(float Amount)
+void ATDGameState::AddEnergy(float Amount)
 {
 	AvailableEnergy = FMath::Clamp(AvailableEnergy + Amount,0.f, TotalEnergy);
 }
 
-float AATDGameState::GetAvailableEnergy(float cost)
+float ATDGameState::GetAvailableEnergy()
 {
 	// Return the energy that would remain after spending `cost` (never negative)
-	return FMath::Max(0.f, AvailableEnergy - cost);
+	return AvailableEnergy;
+}
+bool ATDGameState::CanAfford(float Cost) const
+{
+	return AvailableEnergy >= Cost;
 }

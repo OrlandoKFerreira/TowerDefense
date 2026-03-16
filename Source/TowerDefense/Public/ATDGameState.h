@@ -10,12 +10,12 @@
  * 
  */
 UCLASS()
-class TOWERDEFENSE_API AATDGameState : public AGameStateBase
+class TOWERDEFENSE_API ATDGameState : public AGameStateBase
 {
 	GENERATED_BODY()
 	
 public:
-	AATDGameState();
+	ATDGameState();
 
 protected:
 
@@ -31,6 +31,8 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Energy")
 	bool SpendEnergy(float Amount);
 	UFUNCTION(BlueprintCallable, Category = "Energy")
-	float GetAvailableEnergy(float cost);
+	float GetAvailableEnergy();
+	UFUNCTION(BlueprintCallable, Category = "Energy")
+	bool CanAfford(float Cost) const;
 
 };
