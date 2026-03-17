@@ -4,16 +4,16 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "ATowerBase.generated.h"
+#include "TowerBase.generated.h"
 
 UCLASS()
-class TOWERDEFENSE_API AATowerBase : public AActor
+class TOWERDEFENSE_API ATowerBase : public AActor
 {
 	GENERATED_BODY()
 	
 public:	
 	// Sets default values for this actor's properties
-	AATowerBase();
+	ATowerBase();
 
 protected:
 	// Called when the game starts or when spawned
@@ -26,9 +26,9 @@ protected:
 	UPROPERTY(EditAnywhere, Category = "Tower")
 	float FireRate = 1.f;
 	UPROPERTY(EditAnywhere, Category = "Tower")
-	float EnergyCost = 20.f;
+	float EnergyCost = 10.f;
 
-	UPROPERTY()
+
 	AActor* CurrentTarget;
 
 	void FindTarget();

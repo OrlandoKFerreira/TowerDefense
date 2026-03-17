@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameStateBase.h"
-#include "ATDGameState.generated.h"
+#include "TDGameState.generated.h"
 
 /**
  * 

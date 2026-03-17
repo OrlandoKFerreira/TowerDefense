@@ -2,13 +2,13 @@
 
 
 #include "BuildGrid.h"
-
+#include "DrawDebugHelpers.h"
 // Sets default values
 ABuildGrid::ABuildGrid()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
-;
+	
 
 }
 
@@ -16,7 +16,7 @@ ABuildGrid::ABuildGrid()
 void ABuildGrid::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	DrawGrid();
 }
 FIntPoint ABuildGrid::WorldToCell(const FVector& WorldLocation) const
 {
@@ -45,7 +45,36 @@ void ABuildGrid::SetCellOccupied(const FIntPoint& Cell, bool bOccupied)
 FVector ABuildGrid::SnapToGrid(const FVector& WorldLocation) const
 {
 	FIntPoint Cell = WorldToCell(WorldLocation);
+
 	float SnappedX = Cell.X * GridSize + GridSize / 2.0f;
 	float SnappedY = Cell.Y * GridSize + GridSize / 2.0f;
-	return FVector(SnappedX, SnappedY, WorldLocation.Z);
+
+	float ZOffset = 50.0f;
+
+	return FVector(SnappedX, SnappedY, ZOffset);
+}
+void ABuildGrid::DrawGrid()
+{
+	if (!GetWorld()) return;
+
+	FVector Origin = GetActorLocation();
+
+	for (int32 X = 0; X < GridWidth; X++)
+	{
+		for (int32 Y = 0; Y < GridHeight; Y++)
+		{
+			FVector Location = Origin + FVector(X * GridSize, Y * GridSize, 100);
+
+			DrawDebugBox(
+				GetWorld(),
+				Location,
+				FVector(GridSize * 0.5f),
+				FColor::Red,
+				true,
+				9999.0f,
+				0,
+				5.0f
+			);
+		}
+	}
 }

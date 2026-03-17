@@ -1,5 +1,5 @@
 #include "WaveManager.h"
-#include "AEnemyBase.h"
+#include "EnemyBase.h"
 #include "Engine/World.h"
 #include "TimerManager.h"
 

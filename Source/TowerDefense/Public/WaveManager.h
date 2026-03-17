@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "AEnemyBase.h"
+#include "EnemyBase.h"
 #include "WaveManager.generated.h"
 
 

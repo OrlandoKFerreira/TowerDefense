@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "ACoreBase.h"
+#include "CoreBase.h"
 
 // Sets default values
 ACoreBase::ACoreBase()
@@ -17,11 +17,17 @@ void ACoreBase::BeginPlay()
 	Super::BeginPlay();
 	
 }
-
 // Called every frame
 void ACoreBase::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
 }
-
+void ACoreBase::ReceiveDamage(float DamageAmount)
+{
+	CurrentHealth -= DamageAmount;
+	if (CurrentHealth <= 0)
+	{
+		// Game Over logic here
+	}
+}

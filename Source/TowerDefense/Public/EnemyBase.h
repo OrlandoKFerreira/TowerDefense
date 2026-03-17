@@ -2,9 +2,9 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
-#include "AEnemyBase.generated.h"
+#include "EnemyBase.generated.h"
 
-class AATowerBase;
+class ATowerBase;
 class ACoreBase;
 
 UCLASS()

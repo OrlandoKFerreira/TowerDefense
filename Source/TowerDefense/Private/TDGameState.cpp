@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "ATDGameState.h"
+#include "TDGameState.h"
 ATDGameState::ATDGameState()
 {
 	TotalEnergy = 100.0f;

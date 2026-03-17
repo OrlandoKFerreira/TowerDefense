@@ -1,0 +1,27 @@
+// Fill out your copyright notice in the Description page of Project Settings.
+
+#pragma once
+
+#include "CoreMinimal.h"
+#include "GameFramework/GameModeBase.h"
+#include "TDGameState.h"
+#include "TDGameMode.generated.h"
+class ATowerBase;
+/**
+ * 
+ */
+UCLASS()
+class TOWERDEFENSE_API ATDGameMode : public AGameModeBase
+{
+	GENERATED_BODY()
+
+public:
+	ATDGameMode();
+
+	UPROPERTY(EditDefaultsOnly, Category = "Tower")
+	TSubclassOf<ATowerBase> DefaultTowerClass;
+
+	TSubclassOf<ATowerBase> GetDefaultTowerClass() const;
+protected:
+
+};

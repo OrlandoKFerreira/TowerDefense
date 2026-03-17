@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "ACoreBase.generated.h"
+#include "CoreBase.generated.h"
 
 UCLASS()
 class TOWERDEFENSE_API ACoreBase : public AActor
@@ -28,4 +28,6 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	UFUNCTION()
+	void ReceiveDamage(float DamageAmount);
 };

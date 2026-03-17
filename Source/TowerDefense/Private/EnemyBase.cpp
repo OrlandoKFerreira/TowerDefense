@@ -1,11 +1,11 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "AEnemyBase.h"
-#include "ATDGameState.h"
+#include "EnemyBase.h"
+#include "TDGameState.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Kismet/GameplayStatics.h"
-#include "ACoreBase.h"
+#include "CoreBase.h"
 
 // Sets default values
 AEnemyBase::AEnemyBase()
@@ -28,7 +28,7 @@ void AEnemyBase::BeginPlay()
 
 	if (TargetCore)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Core encontrado!"));
+		UE_LOG(LogTemp, Warning, TEXT("Core Nao encontrado!"));
 	}
 	
 }
@@ -58,7 +58,6 @@ void AEnemyBase::ReceiveDamage(float DamageAmount)
 }
 void AEnemyBase::Die()
 {
-	// Implement death logic here, e.g., play death animation, drop loot, etc.
 	ATDGameState* GS = GetWorld()->GetGameState<ATDGameState>();
 	if(GS){
 		GS->AddEnergy(RewardEnergy);
@@ -69,12 +68,13 @@ void AEnemyBase::Die()
 void AEnemyBase::ReachCore()
 {
 	if (TargetCore) {
-		// Implement logic for when the enemy reaches the core, e.g., apply damage to the core
-		UE_LOG(LogTemp, Warning, TEXT("Reached the core: %s"), *TargetCore->GetName());
+		TargetCore->ReceiveDamage(DamageToCore);
+		Destroy();
 	}
 }
 void AEnemyBase::MoveToCore()
 {
+	if (!TargetCore)return;
 	FVector CoreLocation = TargetCore->GetActorLocation();
 
 	FVector EnemyLocation = GetActorLocation();
@@ -88,5 +88,6 @@ void AEnemyBase::MoveToCore()
 	if (Distance <= 150.f)
 	{
 		ReachCore();
+		return;
 	}
 }
